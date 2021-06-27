@@ -1,0 +1,38 @@
+.lastWorkoutData {
+    padding-left: 30%;
+    padding-right: 30%;
+    font-size: 25px;
+}
+
+.nav-link {
+    font-size: 30px;
+    color: black;
+    margin-bottom: 100px;
+}
+
+.home-content {
+    text-align: center;
+}
+
+.greetingText {
+    padding-bottom: 20px;
+}
+
+.start-workout {
+    text-align: center;
+}
+
+#timer {
+    padding-bottom: 30px;
+}
+ #edd {
+     width: 150px;
+ }
+
+ #number {
+     width: 70px;
+ }
+
+ #reps {
+     width: 70px
+ }
