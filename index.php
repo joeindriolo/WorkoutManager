@@ -1,16 +1,5 @@
 <?php
 session_start();
-/*
-    ob_start();
-    if(!isset($_COOKIE["queue"])) {
-        echo 'setting';
-    setcookie("queue", new SplQueue(),'/');
-    header("Refresh");
-    }else{
-        echo 'sett';
-    }
-    ob_end_flush();
-*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
