@@ -1,3 +1,17 @@
+<?php
+session_start();
+/*
+    ob_start();
+    if(!isset($_COOKIE["queue"])) {
+        echo 'setting';
+    setcookie("queue", new SplQueue(),'/');
+    header("Refresh");
+    }else{
+        echo 'sett';
+    }
+    ob_end_flush();
+*/
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -76,6 +90,10 @@
                 <div class="col-sm-1">
                     <button type="button" class="btn btn-danger" onclick="stopTimer()">End Workout</button>
                 </div>
+            </div>
+            <div class="currentWorkout">
+                <h4 id="current">Current Workout:</h4>
+                <?php include 'displayqueue.php';?>
             </div>
         </form>
     </div>

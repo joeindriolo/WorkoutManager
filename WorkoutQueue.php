@@ -3,7 +3,11 @@
 class WorkoutQueue
 {
     public static $queue;
-    function __construct() {
-        $this->queue= new SplQueue();
+    public static function setQueue() {
+        WorkoutQueue::$queue= new SplQueue();
+    }
+
+    public static function getQueue() {
+        return WorkoutQueue::$queue;
     }
 }

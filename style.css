@@ -22,6 +22,11 @@
     text-align: center;
 }
 
+#current {
+    text-align: center;
+    margin-top: 20px;
+}
+
 #timer {
     padding-bottom: 30px;
 }
