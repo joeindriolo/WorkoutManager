@@ -1,5 +1,6 @@
 <?php
 session_start();
+include 'autoloader.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,8 +26,7 @@ session_start();
         <h1 class="greetingText" id="greeting"></h1>
         <script>printGreeting()</script>
         <div class="lastWorkoutData">
-            <h3>Your last workout:</h3>
-            <p>30 Squats <br> 30 Pushups <br> 3 sets of 10 200lb curls</p>
+            <?php include 'displayqueue.php'; ?>
         </div>
 
         <div class="startButton">
@@ -39,7 +39,7 @@ session_start();
         <h2 id="date"></h2>
         <script>getDate()</script>
         <h3 id="timer">00:00:00</h3>
-        <form id="form" method="post" action="addworkout.php" return false;>
+        <form id="form" method="post">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-sm-2">
@@ -74,7 +74,7 @@ session_start();
         </div>
             <div class ="row justify-content-center">
                 <div class="col-sm-1">
-                    <button type="submit"  form="form" name="add" class="btn btn-success" id="addButton" disabled>Add Workout</button>
+                    <button type="button" name="add" class="btn btn-success" onclick="addWorkout()" id="addButton" disabled>Add Workout</button>
                 </div>
                 <div class="col-sm-1">
                     <button type="button" class="btn btn-danger" onclick="stopTimer()">End Workout</button>

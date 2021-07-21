@@ -9,6 +9,7 @@ function my_autoloader($class) {
 }
 
 spl_autoload_register('my_autoloader');
+echo 'yaaaa';
 
 session_start();
 
@@ -29,11 +30,8 @@ $type=null;
 $repAmount=null;
 $lbs=null;
 
-
-
-//need to get the queue to be initalized once, and called later so it does not reset every time we submit the form
-
 if(isset($_POST["exer"])) {
+    echo 'forwei';
     $exercise = $_POST["exer"];
     $number = $_POST["number"];
     $type = $_POST["type"];
@@ -41,12 +39,16 @@ if(isset($_POST["exer"])) {
         $repAmount= $_POST['reps'];
     }
     if(isset($_POST["lbs"])) $lbs=$_POST["lbs"];
+    //dont check issset check if it is equal to number or not
 
+    //not declaring lbs as null when it is
     if(is_null($repAmount) && is_null($lbs)) {
         $queue->push(serialize(new WorkoutObject($exercise,$number,$type)));
+        echo 'lbs null';
     }
     else if(is_null($repAmount) && !is_null($lbs)) {
         $queue->push(serialize(new WorkoutObject($exercise,$number,$type,$lbs)));
+        echo 'lbs not null';
     }
     else if(!is_null($repAmount) && !is_null($lbs)) {
         $queue->push(serialize(new WorkoutObject($exercise,$number,$type,$repAmount,$lbs)));
@@ -60,5 +62,7 @@ if(isset($_POST["exer"])) {
         $queue->next();
     }
 }
+
+echo 'forwei';
 
 

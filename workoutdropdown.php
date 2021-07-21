@@ -5,7 +5,7 @@ require 'db.php';
 //is set if not new one, if is read it
 
 $conn= openConnection();
-$sql = "SELECT Exercise FROM ExerciseList";
+$sql = "SELECT Exercise FROM ExerciseList ORDER BY Exercise ASC";
 $results = mysqli_query($conn,$sql);
 
 //i think there is an issue with the order the classes load in , i can set static queue in addworkout.php, but not this one
@@ -22,5 +22,19 @@ if(mysqli_num_rows($results)>0) {
 }else{
     $conn->error;
 }
+
+//NOT WORKING ???? WHY ????????
+/*
+public function doesExist($exercise) {
+    while($row=mysqli_fetch_array($results)) {
+        $exercise = $row['Exercise'];
+        echo "<option value = '$exercise'>$exercise</option>";
+    }
+
+}
+*/
+
+
 ?>
+
 

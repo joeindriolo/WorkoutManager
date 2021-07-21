@@ -20,6 +20,7 @@ var hr=0;
 var min=0;
 var sec=0;
 var stopped=true;
+var resume=false;
 
 
 function startTimer() {
@@ -27,6 +28,10 @@ function startTimer() {
         stopped=false;
         timer();
     }
+}
+
+function resumeTimer() {
+    resume =true;
 }
 
 function stopTimer() {
@@ -72,9 +77,9 @@ function timer() {
 
 function enableAddButton() {
     if($("#edd").val() !== "default" && $("#typedropdown").val() !== "default") {
-        $("#addButton").replaceWith('<button type="submit" form="form" class="btn btn-success" name="add" id="addButton">Add Workout</button>');
+        $("#addButton").replaceWith('<button type="button" form="form" class="btn btn-success" name="add" id="addButton" onclick="addWorkout()">Add Workout</button>');
     }else{
-        $("#addButton").replaceWith('<button type="submit" form="form" class="btn btn-success"  name="add" id="addButton" disabled>Add Workout</button>');
+        $("#addButton").replaceWith('<button type="button" form="form" class="btn btn-success"  name="add" id="addButton" disabled>Add Workout</button>');
     }
 }
 
@@ -126,6 +131,27 @@ function changeType(data) {
     });
 }
 
+//ajax to submit form, and then load the data again but not reload the div. You need to make an Ajax query to get data from the server and fill the DIV.
+
+
+
+    function addWorkout() {
+    $(document).ready(function() {
+        console.log("THis work?");
+        $.ajax({
+            type: "POST",
+            url: "addworkout.php",
+            data: {exer: $('#edd').val(), number: $('#number').val(), type: $('#typedropdown').val(), reps: $('#reps').val(), lbs: $('#lbs').val() },
+            success: function (data) {
+                console.log(data);
+            },
+            error : function() {
+                console.log('error');
+            }
+        });
+    });
+    $('#queuecontent').load(location.href+ " #queuecontent");
+}
 
 $(document).ready(function() {
     $("#start-workout").hide();
@@ -137,3 +163,5 @@ $(document).ready(function() {
     });
 });
 
+
+//merge sort, binary search to make exercises alphabetical
