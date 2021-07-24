@@ -1,14 +1,19 @@
 <?php
 session_start();
+
 include 'autoloader.php';
+$sql = new SQL();
+$sql->checkAndCreateTables();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/ab48f33bcd.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="time.js"></script>
     <title>Workout Manager</title>
 </head>
@@ -17,7 +22,7 @@ include 'autoloader.php';
     <div class="homeBar">
         <nav class="nav menu justify-content-center">
             <a class="nav-link" href="#">Home</a>
-            <a class="nav-link" href="#">Today</a>
+            <a class="nav-link" href="#">History</a>
             <a class="nav-link" href="#">Workouts</a>
             <a class="nav-link" href="#">Calendar</a>
         </nav>
@@ -30,30 +35,27 @@ include 'autoloader.php';
         </div>
 
         <div class="startButton">
-            <button type="button" class="btn btn-success" id="toggle" onclick="startTimer()">Start New Workout</button>
+            <button type="button" class="btn btn-success" id="toggle" onclick="startTimer()"><i class="far fa-file"></i> Start New Workout</button>
         </div>
     </div>
 
     <div class="start-workout" id="start-workout">
-        <h1 class="workoutText">Today's Workout</h1>
+        <h1 class="workoutText"> <i class="fas fa-dumbbell"></i> Today's Workout</h1>
         <h2 id="date"></h2>
         <script>getDate()</script>
         <h3 id="timer">00:00:00</h3>
         <form id="form" method="post">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-sm-2">
-                    <div class="form-group" id="exerciseDropdown">
+            <div class="row justify-content-center" id="formrow">
+                <div class="col-auto">
+                    <div id="exerciseDropdown">
                         <?php require 'workoutdropdown.php'; ?>
                     </div>
                 </div>
-                <div class="col-sm-1">
-                    <div class="form-group">
-                        <input type="number" class="form-control" id="number" name="number" placeholder="#" autocomplete="off">
-                    </div>
+                <div class="col-auto">
+                    <input type="number" class="form-control" id="number" name="number" placeholder="#" autocomplete="off">
                 </div>
-                <div class="col-sm-2">
-                    <select name="type" class="form-control" id="typedropdown" onchange="{addRepSelector(this.value); enableAddButton();}">
+                <div class="col-sm-1">
+                    <select name="type" class="form-select" id="typedropdown" onchange="{addRepSelector(this.value); enableAddButton();}">
                         <option value ="default">Select Type</option>
                         <option value="Minutes">Minutes</option>
                         <option value="Seconds">Seconds</option>
@@ -61,30 +63,34 @@ include 'autoloader.php';
                         <option value="Sets">Sets</option>
                     </select>
                 </div>
-                    <div class="col-sm-1" id="hide">
+                    <div class="col-auto" id="hide">
                         <h4 id="oftext">Of</h4>
                     </div>
-                    <div class="col-sm-1" id="hide2">
+                    <div class="col-auto" id="hide2">
                         <input type="number" class="form-control" name="reps" id="reps" placeholder="#" autocomplete="off">
                     </div>
-                    <div class="col-sm-1">
+                <div class="col-sm-1">
                     <input type="number" class="form-control" id="lbs" name="lbs" placeholder="lbs" autocomplete="off">
                 </div>
             </div>
-        </div>
-            <div class ="row justify-content-center">
-                <div class="col-sm-1">
-                    <button type="button" name="add" class="btn btn-success" onclick="addWorkout()" id="addButton" disabled>Add Workout</button>
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <button type="button" name="add" class="btn btn-success" onclick="addWorkout()" id="addButton" disabled><i class="fas fa-plus"></i> Add Workout</button>
                 </div>
-                <div class="col-sm-1">
-                    <button type="button" class="btn btn-danger" onclick="stopTimer()">End Workout</button>
+                <div class="col-auto">
+                    <button type="button" class="btn btn-danger" onclick="endWorkout()" id="endButton"><i class="fas fa-stop"></i> End Workout</button>
                 </div>
             </div>
-            <div class="currentWorkout">
+            <div class="currentWorkout" id="currentWorkout" name="currentWorkout">
                 <h4 id="current">Current Workout:</h4>
                 <?php include 'displayqueue.php';?>
             </div>
         </form>
+    </div>
+    <div class="endWorkout" id="endWorkout">
+        <h2 class="summaryText">Workout Summary</h2>
+    </div>
+    <div class="history" id="history">
     </div>
 </div>
 </body>

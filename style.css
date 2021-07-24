@@ -1,3 +1,13 @@
+
+.summaryText {
+    text-align: center;
+}
+
+.endWorkout {
+    text-align: center;
+}
+
+
 .lastWorkoutData {
     padding-left: 30%;
     padding-right: 30%;
@@ -5,9 +15,8 @@
 }
 
 .nav-link {
-    font-size: 30px;
-    color: black;
-    margin-bottom: 100px;
+    font-size: 20px;
+    color: white !important;
 }
 
 .home-content {
@@ -15,10 +24,12 @@
 }
 
 .greetingText {
+    padding-top: 100px;
     padding-bottom: 20px;
 }
 
 .start-workout {
+    margin-top: 100px;
     text-align: center;
 }
 
@@ -41,3 +52,21 @@
  #reps {
      width: 70px
  }
+
+#formrow {
+    margin-bottom: 15px;
+}
+
+.summary {
+    text-align: center;
+}
+
+.menu {
+    background: #475af1;
+    padding: 5px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.startButton {
+    padding-top: 15px;
+}

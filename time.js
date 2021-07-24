@@ -131,9 +131,6 @@ function changeType(data) {
     });
 }
 
-//ajax to submit form, and then load the data again but not reload the div. You need to make an Ajax query to get data from the server and fill the DIV.
-
-
 
     function addWorkout() {
     $(document).ready(function() {
@@ -142,26 +139,67 @@ function changeType(data) {
             type: "POST",
             url: "addworkout.php",
             data: {exer: $('#edd').val(), number: $('#number').val(), type: $('#typedropdown').val(), reps: $('#reps').val(), lbs: $('#lbs').val() },
-            success: function (data) {
-                console.log(data);
+            success: function () {
+                $.ajax({
+                    type: "POST",
+                    url: "displayqueue.php",
+                    data: '',
+                    success: function(resp) {
+                        //var h = $('currentWorkout').replaceWith($('currentWorkout').load('displayqueue.php'));
+                        $("#currentWorkout").load(location.href+ " #currentWorkout");
+                    }
+                });
             },
             error : function() {
                 console.log('error');
             }
         });
     });
-    $('#queuecontent').load(location.href+ " #queuecontent");
+}
+
+//left off with this,,,
+
+function endWorkout() {
+    $(document).ready(function() {
+        $.ajax({
+            type: "POST",
+            url: "endworkout.php",
+            data: {date: new Date().toLocaleDateString(), timer: hr+':'+min+':'+sec},
+            success: function(resp) {
+                $("#endWorkout").append(resp);
+            },
+            error: function () {
+                alert('err');
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "displayqueue.php",
+            data: '',
+            success: function(res) {
+                //var h = $('currentWorkout').replaceWith($('currentWorkout').load('displayqueue.php'));
+                $("#endWorkout").append(res);
+            }
+        });
+    });
 }
 
 $(document).ready(function() {
     $("#start-workout").hide();
+    $("#endWorkout").hide();
     $("#toggle").click(function () {
         $("#welcome").hide();
         $("#start-workout").show();
         $("#hide").hide();
         $("#hide2").hide();
     });
+    $("#endButton").click(function() {
+        $("#start-workout").hide();
+        $("#endWorkout").show();
+    })
 });
+
+
 
 
 //merge sort, binary search to make exercises alphabetical
