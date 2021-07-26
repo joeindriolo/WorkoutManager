@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ERROR);
 session_start();
 
 include 'autoloader.php';
@@ -21,9 +24,9 @@ $sql->checkAndCreateTables();
 <div class="container-fluid main-content">
     <div class="homeBar">
         <nav class="nav menu justify-content-center">
-            <a class="nav-link" href="#">Home</a>
-            <a class="nav-link" href="#">History</a>
-            <a class="nav-link" href="#">Workouts</a>
+            <a class="nav-link" href="#" id="home">Home</a>
+            <a class="nav-link " href="#" id="past">History</a>
+            <a class="nav-link" href="#" id="type">Workouts</a>
             <a class="nav-link" href="#">Calendar</a>
         </nav>
     </div>
@@ -63,10 +66,10 @@ $sql->checkAndCreateTables();
                         <option value="Sets">Sets</option>
                     </select>
                 </div>
-                    <div class="col-auto" id="hide">
+                    <div class="col-auto" id="ofText">
                         <h4 id="oftext">Of</h4>
                     </div>
-                    <div class="col-auto" id="hide2">
+                    <div class="col-auto" id="setAmount">
                         <input type="number" class="form-control" name="reps" id="reps" placeholder="#" autocomplete="off">
                     </div>
                 <div class="col-sm-1">
@@ -91,6 +94,14 @@ $sql->checkAndCreateTables();
         <h2 class="summaryText">Workout Summary</h2>
     </div>
     <div class="history" id="history">
+        <h2 class="text-center" style="padding-top: 60px">Past workouts</h2>
+        <?php include 'pastworkouts.php';?>
+    </div>
+</div>
+
+    <div class="typeList" id="typeList">
+        <h2 class="text-center" style="padding-top: 60px">Workout List</h2>
+        <?php include 'workouttypes.php';?>
     </div>
 </div>
 </body>

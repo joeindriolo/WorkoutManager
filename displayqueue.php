@@ -11,7 +11,7 @@ session_start();
 
 
 //i think its loading this before the session is made
-echo "<div class='queuecontent' id='queuecontent' name='queuecontent'>";
+echo "<div class='queuecontent' id='queuecontent'>";
 $queue = $_SESSION["queue"];
 if(is_null($queue)) {
     echo 'Empty queue';

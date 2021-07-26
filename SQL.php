@@ -1,5 +1,7 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ERROR);
 
 class SQL
 {
@@ -60,5 +62,14 @@ class SQL
     function getWorkoutTypes() {
         $conn = $this->openConnection();
         $sql = "SELECT Exercise FROM exerciselist";
+        $results=mysqli_query($conn,$sql);
+        return $results;
+    }
+
+    function getAllWorkouts() {
+        $conn = $this->openConnection();
+        $sql = "SELECT * FROM workouts";
+        $results=mysqli_query($conn, $sql);
+        return $results;
     }
 }

@@ -91,11 +91,11 @@ function changeToTextBox(data) {
 
 function addRepSelector(data) {
     if(data=='Sets') {
-        $("#hide").show();
-        $("#hide2").show();
+        $("#ofText").show();
+        $("#setAmount").show();
     }else{
-        $("#hide").hide();
-        $("#hide2").hide();
+        $("#ofText").hide();
+        $("#setAmount").hide();
     }
 }
 
@@ -187,16 +187,34 @@ function endWorkout() {
 $(document).ready(function() {
     $("#start-workout").hide();
     $("#endWorkout").hide();
-    $("#toggle").click(function () {
+    $("#history").hide();
+    $("#typeList").hide();
+    $("#toggle").on("click" ,function () {
         $("#welcome").hide();
         $("#start-workout").show();
-        $("#hide").hide();
-        $("#hide2").hide();
+        $("#ofText").hide();
+        $("#setAmount").hide();
     });
-    $("#endButton").click(function() {
+    $("#endButton").on("click",function() {
         $("#start-workout").hide();
         $("#endWorkout").show();
-    })
+    });
+    $("#past").on("click",function() {
+        $("#welcome").hide();
+        $("#history").show();
+        $("#typeList").hide();
+    });
+    $("#home").on("click",function() {
+        $("#history").hide();
+        $("#start-workout").hide();
+        $("#welcome").show();
+    });
+    $("#type").on("click",function () {
+        $("#history").hide();
+        $("#welcome").hide();
+        $("#start-workout").hide();
+        $("#typeList").show();
+    });
 });
 
 
