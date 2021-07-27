@@ -9,7 +9,6 @@ function my_autoloader($class) {
 }
 
 spl_autoload_register('my_autoloader');
-echo 'yaaaa';
 
 session_start();
 
@@ -23,15 +22,15 @@ if(isset($_SESSION["queue"])) {
     echo "not made";
 }
 
-
+$sql = new SQL();
 $exercise=null;
 $number=null;
 $type=null;
 $repAmount=null;
 $lbs=null;
+$data=null;
 
 if(isset($_POST["exer"])) {
-    echo 'forwei';
     $exercise = $_POST["exer"];
     $number = $_POST["number"];
     $type = $_POST["type"];
@@ -54,6 +53,16 @@ if(isset($_POST["exer"])) {
         $queue->push(serialize(new WorkoutObject($exercise,$number,$type,$repAmount,$lbs)));
     }
 
+    $results=$sql->getWorkoutTypes();
+    if(mysqli_num_rows($results)>0) {
+        while($row=mysqli_fetch_array($results)) {
+            $data[]= $row["Exercise"];
+        }
+        if(!in_array($exercise,$data)) {
+            $sql->addWorkoutType($exercise);
+        }
+    }
+
     $queue->rewind();
     while($queue->valid()) {
         $workoutobject = unserialize($queue->current());
@@ -62,7 +71,5 @@ if(isset($_POST["exer"])) {
         $queue->next();
     }
 }
-
-echo 'forwei';
 
 

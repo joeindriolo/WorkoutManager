@@ -15,23 +15,29 @@ session_start();
 //date, time, duration, queue
 $date=null;
 $duration=null;
+$queue=$_SESSION["queue"];
 
 $sql = new SQL();
 
-echo "<div class='summary'>";
-if(isset($_POST["date"])) {
-    $date=$_POST["date"];
-    echo "<h3>$date</h3>";
-}
-if(isset($_POST["timer"]))  {
-    $duration=$_POST["timer"];
-    echo "<h3>$duration</h3>";
+if(is_null($queue)) {
+    echo 'Cannot add workout, the queue is empty.';
+}else{
+    echo "<div class='summary'>";
+    if(isset($_POST["date"])) {
+        $date=$_POST["date"];
+        echo "<h3>$date</h3>";
+    }
+    if(isset($_POST["timer"]))  {
+        $duration=$_POST["timer"];
+        echo "<h3>$duration</h3>";
+    }
+
+    echo "<?php include 'displayqueue.php'?>";
+    $so = serialize($_SESSION["queue"]);
+    $sql->addWorkout($date,$duration, $so);
+    echo "</div>";
 }
 
-echo "<?php include 'displayqueue.php'?>";
-$so = serialize($_SESSION["queue"]);
-$sql->addWorkout($date,$duration, $so);
-echo "</div>";
 
 
 

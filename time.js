@@ -85,7 +85,7 @@ function enableAddButton() {
 
 function changeToTextBox(data) {
     if(data=='new') {
-        $("#edd").replaceWith('<input class="form-control" id="exerciseDropdown" placeholder="Exercise" autocomplete="off">');
+        $("#edd").replaceWith('<input class="form-control" id="edd" placeholder="Exercise" autocomplete="off">');
     }
 }
 
@@ -184,6 +184,19 @@ function endWorkout() {
     });
 }
 
+function addWorkoutType() {
+    $(document).ready(function() {
+        $.ajax({
+            type: "POST",
+            url: "addtype.php",
+            data: {type: $("#addType").val()},
+            success: function(resp) {
+                alert(resp);
+            }
+        });
+    });
+}
+
 $(document).ready(function() {
     $("#start-workout").hide();
     $("#endWorkout").hide();
@@ -207,6 +220,7 @@ $(document).ready(function() {
     $("#home").on("click",function() {
         $("#history").hide();
         $("#start-workout").hide();
+        $("#typeList").hide();
         $("#welcome").show();
     });
     $("#type").on("click",function () {

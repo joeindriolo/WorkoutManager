@@ -61,7 +61,7 @@ class SQL
 
     function getWorkoutTypes() {
         $conn = $this->openConnection();
-        $sql = "SELECT Exercise FROM exerciselist";
+        $sql = "SELECT Exercise FROM ExerciseList ORDER BY Exercise ASC";
         $results=mysqli_query($conn,$sql);
         return $results;
     }

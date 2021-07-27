@@ -101,6 +101,15 @@ $sql->checkAndCreateTables();
 
     <div class="typeList" id="typeList">
         <h2 class="text-center" style="padding-top: 60px">Workout List</h2>
+        <div class="input-group mb-3 justify-content-center">
+            <div class="col-auto">
+                <input type="text" id="addType" class="form-control" placeholder="Add Workout">
+            </div>
+            <div class="col-auto">
+                <button type="button" onclick="addWorkoutType()" class="btn btn-success">Add Workout</button>
+            </div>
+        </div>
+
         <?php include 'workouttypes.php';?>
     </div>
 </div>
