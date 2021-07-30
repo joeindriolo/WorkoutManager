@@ -13,11 +13,14 @@ $sql->checkAndCreateTables();
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/theme3.css"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/ab48f33bcd.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="time.js"></script>
+    <script type="text/javascript" src="calutils.js"></script>
+    <script type="text/javascript" src="js/caleandar.min.js"></script>
     <title>Workout Manager</title>
 </head>
 <body>
@@ -27,14 +30,14 @@ $sql->checkAndCreateTables();
             <a class="nav-link" href="#" id="home">Home</a>
             <a class="nav-link " href="#" id="past">History</a>
             <a class="nav-link" href="#" id="type">Workouts</a>
-            <a class="nav-link" href="#">Calendar</a>
+            <a class="nav-link" href="#" id="calendar">Calendar</a>
         </nav>
     </div>
     <div class="home-content" id="welcome">
         <h1 class="greetingText" id="greeting"></h1>
         <script>printGreeting()</script>
         <div class="lastWorkoutData">
-            <?php include 'displayqueue.php'; ?>
+            <?php include 'lastworkoutsql.php'; ?>
         </div>
 
         <div class="startButton">
@@ -50,7 +53,7 @@ $sql->checkAndCreateTables();
         <form id="form" method="post">
             <div class="row justify-content-center" id="formrow">
                 <div class="col-auto">
-                    <div id="exerciseDropdown">
+                    <div id="exerciseDropdown" class="exd">
                         <?php require 'workoutdropdown.php'; ?>
                     </div>
                 </div>
@@ -109,9 +112,15 @@ $sql->checkAndCreateTables();
                 <button type="button" onclick="addWorkoutType()" class="btn btn-success">Add Workout</button>
             </div>
         </div>
-
         <?php include 'workouttypes.php';?>
     </div>
+
+<div class="cal" id="cal">
+    <?php include 'calendar.php';?>
+    <p id="ext">Text</p>
+</div>
+
+
 </div>
 </body>
 </html>

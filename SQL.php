@@ -72,4 +72,11 @@ class SQL
         $results=mysqli_query($conn, $sql);
         return $results;
     }
+
+    function getLastWorkout() {
+        $conn= $this->openConnection();
+        $sql= "SELECT * FROM workouts ORDER BY ID DESC LIMIT 1";
+        $results=mysqli_query($conn,$sql);
+        return $results;
+    }
 }

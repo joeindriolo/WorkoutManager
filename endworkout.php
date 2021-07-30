@@ -36,6 +36,7 @@ if(is_null($queue)) {
     $so = serialize($_SESSION["queue"]);
     $sql->addWorkout($date,$duration, $so);
     echo "</div>";
+    session_unset();
 }
 
 

@@ -134,21 +134,13 @@ function changeType(data) {
 
     function addWorkout() {
     $(document).ready(function() {
-        console.log("THis work?");
         $.ajax({
             type: "POST",
             url: "addworkout.php",
             data: {exer: $('#edd').val(), number: $('#number').val(), type: $('#typedropdown').val(), reps: $('#reps').val(), lbs: $('#lbs').val() },
             success: function () {
-                $.ajax({
-                    type: "POST",
-                    url: "displayqueue.php",
-                    data: '',
-                    success: function(resp) {
-                        //var h = $('currentWorkout').replaceWith($('currentWorkout').load('displayqueue.php'));
-                        $("#currentWorkout").load(location.href+ " #currentWorkout");
-                    }
-                });
+                $("#exerciseDropdown").load(location.href+ " #exerciseDropdown");
+                $("#currentWorkout").load(location.href+ " #currentWorkout");
             },
             error : function() {
                 console.log('error');
@@ -202,6 +194,7 @@ $(document).ready(function() {
     $("#endWorkout").hide();
     $("#history").hide();
     $("#typeList").hide();
+    $("#cal").hide();
     $("#toggle").on("click" ,function () {
         $("#welcome").hide();
         $("#start-workout").show();
@@ -216,22 +209,30 @@ $(document).ready(function() {
         $("#welcome").hide();
         $("#history").show();
         $("#typeList").hide();
+        $("#cal").hide();
     });
     $("#home").on("click",function() {
         $("#history").hide();
         $("#start-workout").hide();
         $("#typeList").hide();
+        $("#cal").hide();
         $("#welcome").show();
     });
     $("#type").on("click",function () {
         $("#history").hide();
         $("#welcome").hide();
         $("#start-workout").hide();
+        $("#cal").hide();
         $("#typeList").show();
     });
+    $("#calendar").on("click", function () {
+        $("#welcome").hide();
+        $("#start-workout").hide();
+        $("#history").hide();
+        $("#typeList").hide();
+        $("#cal").show();
+    });
 });
-
-
 
 
 //merge sort, binary search to make exercises alphabetical

@@ -37,17 +37,19 @@ if(isset($_POST["exer"])) {
     if($type=="Sets") {
         $repAmount= $_POST['reps'];
     }
-    if(isset($_POST["lbs"])) $lbs=$_POST["lbs"];
-    //dont check issset check if it is equal to number or not
+    if($_POST["lbs"]=="") {
+        $lbs=null;
+    }else{
+        $lbs=$_POST["lbs"];
+    }
+    //no object made for set given no lbs.
 
-    //not declaring lbs as null when it is
+
     if(is_null($repAmount) && is_null($lbs)) {
         $queue->push(serialize(new WorkoutObject($exercise,$number,$type)));
-        echo 'lbs null';
     }
     else if(is_null($repAmount) && !is_null($lbs)) {
         $queue->push(serialize(new WorkoutObject($exercise,$number,$type,$lbs)));
-        echo 'lbs not null';
     }
     else if(!is_null($repAmount) && !is_null($lbs)) {
         $queue->push(serialize(new WorkoutObject($exercise,$number,$type,$repAmount,$lbs)));
