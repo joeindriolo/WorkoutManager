@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 
 function my_autoloader($class) {
-    include __DIR__ .'/'.$class .'.php';
+    include __DIR__ . '/' .$class .'.php';
 }
 
 spl_autoload_register('my_autoloader');
@@ -39,6 +39,7 @@ if(is_null($queue)) {
     session_unset();
 }
 
+//just fix the workout summary
 
 
 

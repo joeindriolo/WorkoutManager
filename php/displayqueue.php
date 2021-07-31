@@ -6,11 +6,6 @@ error_reporting(E_ERROR);
 include_once 'WorkoutObject.php';
 session_start();
 
-
-//echo "<script>alert('loaded')</script>";
-
-
-//i think its loading this before the session is made
 echo "<div class='queuecontent' id='queuecontent'>";
 $queue = $_SESSION["queue"];
 if(is_null($queue)) {
@@ -27,4 +22,3 @@ if(is_null($queue)) {
 }
 echo "</div>";
 
-//try to just make this part refresh and not the rest..

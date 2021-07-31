@@ -101,48 +101,18 @@ function addRepSelector(data) {
 
 //need ajax call to handle for addworkoutbutton
 
-function changeType(data) {
-    alert(data);
-    $.ajax({
-        type: 'POST',
-        url: 'addworkoututils.php',
-        data: {type: data},
-        success: isSame(data),
-        dataType: 'text',
-        error: function (jqXHR, exception) {
-            var msg = '';
-            if (jqXHR.status === 0) {
-                msg = 'Not connect.\n Verify Network.';
-            } else if (jqXHR.status == 404) {
-                msg = 'Requested page not found. [404]';
-            } else if (jqXHR.status == 500) {
-                msg = 'Internal Server Error [500].';
-            } else if (exception === 'parsererror') {
-                msg = 'Requested JSON parse failed.';
-            } else if (exception === 'timeout') {
-                msg = 'Time out error.';
-            } else if (exception === 'abort') {
-                msg = 'Ajax request aborted.';
-            } else {
-                msg = 'Uncaught Error.\n' + jqXHR.responseText;
-            }
-            alert(msg);
-        },
-    });
-}
-
 
     function addWorkout() {
     $(document).ready(function() {
         $.ajax({
             type: "POST",
-            url: "addworkout.php",
+            url: "php/addworkout.php",
             data: {exer: $('#edd').val(), number: $('#number').val(), type: $('#typedropdown').val(), reps: $('#reps').val(), lbs: $('#lbs').val() },
             success: function () {
                 $("#exerciseDropdown").load(location.href+ " #exerciseDropdown");
                 $("#currentWorkout").load(location.href+ " #currentWorkout");
             },
-            error : function() {
+            error : function(resp) {
                 console.log('error');
             }
         });
@@ -155,7 +125,7 @@ function endWorkout() {
     $(document).ready(function() {
         $.ajax({
             type: "POST",
-            url: "endworkout.php",
+            url: "php/endworkout.php",
             data: {date: new Date().toLocaleDateString(), timer: hr+':'+min+':'+sec},
             success: function(resp) {
                 $("#endWorkout").append(resp);
@@ -166,7 +136,7 @@ function endWorkout() {
         });
         $.ajax({
             type: "POST",
-            url: "displayqueue.php",
+            url: "php/displayqueue.php",
             data: '',
             success: function(res) {
                 //var h = $('currentWorkout').replaceWith($('currentWorkout').load('displayqueue.php'));
@@ -180,7 +150,7 @@ function addWorkoutType() {
     $(document).ready(function() {
         $.ajax({
             type: "POST",
-            url: "addtype.php",
+            url: "php/addtype.php",
             data: {type: $("#addType").val()},
             success: function(resp) {
                 alert(resp);
@@ -216,7 +186,9 @@ $(document).ready(function() {
         $("#start-workout").hide();
         $("#typeList").hide();
         $("#cal").hide();
+        $("#endWorkout").hide();
         $("#welcome").show();
+
     });
     $("#type").on("click",function () {
         $("#history").hide();
@@ -233,6 +205,3 @@ $(document).ready(function() {
         $("#cal").show();
     });
 });
-
-
-//merge sort, binary search to make exercises alphabetical

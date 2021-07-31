@@ -4,7 +4,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ERROR);
 session_start();
 
-include 'autoloader.php';
+include 'php/autoloader.php';
 $sql = new SQL();
 $sql->checkAndCreateTables();
 ?>
@@ -12,14 +12,14 @@ $sql->checkAndCreateTables();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/theme3.css"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/ab48f33bcd.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="time.js"></script>
-    <script type="text/javascript" src="calutils.js"></script>
+    <script type="text/javascript" src="js/time.js"></script>
+    <script type="text/javascript" src="js/calutils.js"></script>
     <script type="text/javascript" src="js/caleandar.min.js"></script>
     <title>Workout Manager</title>
 </head>
@@ -37,7 +37,7 @@ $sql->checkAndCreateTables();
         <h1 class="greetingText" id="greeting"></h1>
         <script>printGreeting()</script>
         <div class="lastWorkoutData">
-            <?php include 'lastworkoutsql.php'; ?>
+            <?php include 'php/lastworkoutsql.php'; ?>
         </div>
 
         <div class="startButton">
@@ -54,7 +54,7 @@ $sql->checkAndCreateTables();
             <div class="row justify-content-center" id="formrow">
                 <div class="col-auto">
                     <div id="exerciseDropdown" class="exd">
-                        <?php require 'workoutdropdown.php'; ?>
+                        <?php require 'php/workoutdropdown.php'; ?>
                     </div>
                 </div>
                 <div class="col-auto">
@@ -89,7 +89,7 @@ $sql->checkAndCreateTables();
             </div>
             <div class="currentWorkout" id="currentWorkout" name="currentWorkout">
                 <h4 id="current">Current Workout:</h4>
-                <?php include 'displayqueue.php';?>
+                <?php include 'php/displayqueue.php';?>
             </div>
         </form>
     </div>
@@ -98,7 +98,7 @@ $sql->checkAndCreateTables();
     </div>
     <div class="history" id="history">
         <h2 class="text-center" style="padding-top: 60px">Past workouts</h2>
-        <?php include 'pastworkouts.php';?>
+        <?php include 'php/pastworkouts.php';?>
     </div>
 </div>
 
@@ -112,12 +112,13 @@ $sql->checkAndCreateTables();
                 <button type="button" onclick="addWorkoutType()" class="btn btn-success">Add Workout</button>
             </div>
         </div>
-        <?php include 'workouttypes.php';?>
+        <?php include 'php/workouttypes.php';?>
     </div>
 
 <div class="cal" id="cal">
-    <?php include 'calendar.php';?>
-    <p id="ext">Text</p>
+    <?php include 'php/calendar.php';?>
+    <h3>Workout Details</h3>
+    <p id="ext">Click a workout to see more info</p>
 </div>
 
 
