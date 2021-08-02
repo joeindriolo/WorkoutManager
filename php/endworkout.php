@@ -12,7 +12,7 @@ spl_autoload_register('my_autoloader');
 
 session_start();
 
-//date, time, duration, queue
+//date, duration, queue
 $date=null;
 $duration=null;
 $queue=$_SESSION["queue"];
@@ -38,11 +38,3 @@ if(is_null($queue)) {
     echo "</div>";
     session_unset();
 }
-
-//just fix the workout summary
-
-
-
-
-
-

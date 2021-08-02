@@ -37,6 +37,7 @@ $sql->checkAndCreateTables();
         <h1 class="greetingText" id="greeting"></h1>
         <script>printGreeting()</script>
         <div class="lastWorkoutData">
+            <h2>Your last workout:</h2>
             <?php include 'php/lastworkoutsql.php'; ?>
         </div>
 
@@ -117,9 +118,12 @@ $sql->checkAndCreateTables();
 
 <div class="cal" id="cal">
     <?php include 'php/calendar.php';?>
+</div>
+<div class="calDetails" id="calDetails">
     <h3>Workout Details</h3>
     <p id="ext">Click a workout to see more info</p>
 </div>
+
 
 
 </div>

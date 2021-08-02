@@ -43,7 +43,7 @@ class SQL
         $conn = $this->openConnection();
         $sql = "INSERT INTO workouts (date, duration, queue) VALUES ('$date', '$duration', '$queue')";
         if (mysqli_query($conn, $sql)) {
-            echo 'Successful';
+            //
         } else {
             echo $conn->error;
         }

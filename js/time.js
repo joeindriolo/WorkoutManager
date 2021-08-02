@@ -77,9 +77,9 @@ function timer() {
 
 function enableAddButton() {
     if($("#edd").val() !== "default" && $("#typedropdown").val() !== "default") {
-        $("#addButton").replaceWith('<button type="button" form="form" class="btn btn-success" name="add" id="addButton" onclick="addWorkout()">Add Workout</button>');
+        $("#addButton").replaceWith('<button type="button" form="form" class="btn btn-success" name="add" id="addButton" onclick="addWorkout()"><i class="fas fa-plus"></i> Add Workout</button>');
     }else{
-        $("#addButton").replaceWith('<button type="button" form="form" class="btn btn-success"  name="add" id="addButton" disabled>Add Workout</button>');
+        $("#addButton").replaceWith('<button type="button" form="form" class="btn btn-success"  name="add" id="addButton" disabled><i class="fas fa-plus"></i> Add Workout</button>');
     }
 }
 
@@ -99,8 +99,6 @@ function addRepSelector(data) {
     }
 }
 
-//need ajax call to handle for addworkoutbutton
-
 
     function addWorkout() {
     $(document).ready(function() {
@@ -118,8 +116,6 @@ function addRepSelector(data) {
         });
     });
 }
-
-//left off with this,,,
 
 function endWorkout() {
     $(document).ready(function() {
@@ -165,6 +161,7 @@ $(document).ready(function() {
     $("#history").hide();
     $("#typeList").hide();
     $("#cal").hide();
+    $("#calDetails").hide();
     $("#toggle").on("click" ,function () {
         $("#welcome").hide();
         $("#start-workout").show();
@@ -180,6 +177,7 @@ $(document).ready(function() {
         $("#history").show();
         $("#typeList").hide();
         $("#cal").hide();
+        $("calDetails").hide();
     });
     $("#home").on("click",function() {
         $("#history").hide();
@@ -187,6 +185,7 @@ $(document).ready(function() {
         $("#typeList").hide();
         $("#cal").hide();
         $("#endWorkout").hide();
+        $("#calDetails").hide();
         $("#welcome").show();
 
     });
@@ -195,6 +194,7 @@ $(document).ready(function() {
         $("#welcome").hide();
         $("#start-workout").hide();
         $("#cal").hide();
+        $("#calDetails").hide();
         $("#typeList").show();
     });
     $("#calendar").on("click", function () {
@@ -203,5 +203,6 @@ $(document).ready(function() {
         $("#history").hide();
         $("#typeList").hide();
         $("#cal").show();
+        $("#calDetails").show();
     });
 });

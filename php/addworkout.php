@@ -41,7 +41,6 @@ if(isset($_POST["exer"])) {
     }else{
         $lbs=$_POST["lbs"];
     }
-    //no object made for set given no lbs.
 
 
     if(is_null($repAmount) && is_null($lbs)) {

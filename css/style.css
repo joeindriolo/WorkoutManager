@@ -79,6 +79,11 @@
     text-align: center;
 }
 
+.calDetails {
+    text-align: center;
+    padding-top: 50px
+}
+
 .cld-days li {
     height: 70px;
 }
